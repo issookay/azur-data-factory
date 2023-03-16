@@ -18,7 +18,11 @@
 						"referenceName": "DelimitedText2",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "sink1",
+					"rejectedDataLinkedService": {
+						"referenceName": "linkedService1",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -46,8 +50,7 @@
 				"     ignoreNoFilesFound: false) ~> source1",
 				"source1 filter(toInteger(BloodPressure)>=80) ~> filter1",
 				"filter1 aggregate(groupBy(BloodPressure),",
-				"     Blood = toInteger(count(BloodPressure))\r",
-				") ~> aggregate1",
+				"     Blood = toInteger(count(BloodPressure))) ~> aggregate1",
 				"aggregate1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
